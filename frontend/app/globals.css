@@ -1,0 +1,453 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7f5ef;
+  --foreground: #17231c;
+
+  --forest: #174d35;
+  --forest-dark: #0f3927;
+  --forest-light: #e8f0ea;
+
+  --gold: #c8943e;
+  --gold-light: #f7eddc;
+
+  --cream: #f7f5ef;
+  --cream-dark: #eeeade;
+
+  --muted: #68736c;
+  --border: rgba(23, 77, 53, 0.1);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* -------------------------------------------------------
+   Base
+------------------------------------------------------- */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: #dbe9df;
+  color: #123c29;
+}
+
+/* -------------------------------------------------------
+   HiddenGem containers
+------------------------------------------------------- */
+
+.hg-container {
+  width: min(1180px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+.hg-section {
+  padding-block: 72px;
+}
+
+.hg-eyebrow {
+  color: var(--gold);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.hg-title {
+  color: var(--forest-dark);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.hg-muted {
+  color: var(--muted);
+}
+
+/* -------------------------------------------------------
+   Smooth UI
+------------------------------------------------------- */
+
+button,
+a,
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+a {
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease,
+    opacity 180ms ease;
+}
+
+/* -------------------------------------------------------
+   Entrance animations
+------------------------------------------------------- */
+
+@keyframes hg-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hg-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hg-soft-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.hg-fade-up {
+  animation: hg-fade-up 0.65s ease both;
+}
+
+.hg-fade-in {
+  animation: hg-fade-in 0.5s ease both;
+}
+
+.hg-soft-scale {
+  animation: hg-soft-scale 0.55s ease both;
+}
+
+/* -------------------------------------------------------
+   Images
+------------------------------------------------------- */
+
+.hg-image {
+  transition:
+    transform 700ms cubic-bezier(0.2, 0.65, 0.25, 1),
+    filter 500ms ease;
+}
+
+.hg-image-card {
+  overflow: hidden;
+}
+
+.hg-image-card:hover .hg-image {
+  transform: scale(1.045);
+}
+
+.hg-image-overlay {
+  transition: opacity 350ms ease;
+}
+
+.hg-image-card:hover .hg-image-overlay {
+  opacity: 0.9;
+}
+
+/* -------------------------------------------------------
+   Search box
+------------------------------------------------------- */
+
+.hg-search {
+  transition:
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    transform 200ms ease;
+}
+
+.hg-search:focus-within {
+  border-color: rgba(23, 77, 53, 0.35);
+
+  box-shadow:
+    0 18px 45px rgba(23, 77, 53, 0.12),
+    0 0 0 4px rgba(23, 77, 53, 0.05);
+}
+
+.hg-search:hover {
+  transform: translateY(-1px);
+}
+
+/* -------------------------------------------------------
+   Cards
+------------------------------------------------------- */
+
+.hg-card {
+  transition:
+    transform 250ms ease,
+    box-shadow 250ms ease,
+    border-color 250ms ease;
+}
+
+.hg-card:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 20px 45px rgba(23, 50, 35, 0.11);
+
+  border-color: rgba(23, 77, 53, 0.16);
+}
+
+/* -------------------------------------------------------
+   Category interaction
+------------------------------------------------------- */
+
+.hg-category {
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    border-color 220ms ease,
+    background-color 220ms ease;
+}
+
+.hg-category:hover {
+  transform: translateY(-3px);
+}
+
+/* -------------------------------------------------------
+   Focus accessibility
+------------------------------------------------------- */
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+input:focus-visible {
+  outline: none;
+}
+
+/* -------------------------------------------------------
+   Navbar
+------------------------------------------------------- */
+
+.hg-nav {
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+/* -------------------------------------------------------
+   Buttons
+------------------------------------------------------- */
+
+.hg-button {
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease,
+    opacity 180ms ease;
+}
+
+.hg-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.hg-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* -------------------------------------------------------
+   Pills
+------------------------------------------------------- */
+
+.hg-pill {
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.hg-pill:hover {
+  transform: translateY(-1px);
+}
+
+/* -------------------------------------------------------
+   Scroll to top
+------------------------------------------------------- */
+
+.hg-scroll-top {
+  box-shadow:
+    0 12px 30px rgba(15, 57, 39, 0.2);
+}
+
+/* -------------------------------------------------------
+   Dark mode helpers
+------------------------------------------------------- */
+
+.hg-dark-surface {
+  background: #151d18;
+  color: #edf2ed;
+}
+
+.hg-dark-card {
+  background: #18211c;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.hg-dark-muted {
+  color: rgba(255, 255, 255, 0.52);
+}
+
+/* -------------------------------------------------------
+   Scrollbar
+------------------------------------------------------- */
+
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f0eee7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b8c1ba;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #87958c;
+}
+
+/* Firefox */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #b8c1ba #f0eee7;
+}
+
+/* -------------------------------------------------------
+   Mobile
+------------------------------------------------------- */
+
+@media (max-width: 768px) {
+  .hg-container {
+    width: min(100% - 32px, 1180px);
+  }
+
+  .hg-section {
+    padding-block: 58px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hg-container {
+    width: min(100% - 28px, 1180px);
+  }
+
+  .hg-section {
+    padding-block: 48px;
+  }
+
+  html {
+    scroll-padding-top: 70px;
+  }
+}
+
+/* -------------------------------------------------------
+   Small phones
+------------------------------------------------------- */
+
+@media (max-width: 380px) {
+  .hg-container {
+    width: min(100% - 24px, 1180px);
+  }
+}
+
+/* -------------------------------------------------------
+   Touch devices
+------------------------------------------------------- */
+
+@media (hover: none) {
+  .hg-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .hg-image-card:hover .hg-image {
+    transform: none;
+  }
+
+  .hg-search:hover {
+    transform: none;
+  }
+}
+
+/* -------------------------------------------------------
+   Reduced motion
+------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,39 @@
+# ─── Environment files ────────────────────────
+.env
+.env.local
+.env.*.local
+
+# ─── Python ───────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+backend/venv/
+backend/.venv/
+venv/
+.venv/
+
+# ─── Node / Next.js ───────────────────────────
+node_modules/
+frontend/.next/
+frontend/out/
+frontend/build/
+.npm/
+
+# ─── OS & editors ─────────────────────────────
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# ─── Data (keep folder structure, ignore files) ─
+data/raw/*
+data/cleaned/*
+!data/raw/.gitkeep
+!data/cleaned/.gitkeep
